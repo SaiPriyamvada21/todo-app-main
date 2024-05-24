@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    {
+                        sh "git checkout master && git pull origin master"
+                    }
+
+                    // Install dependencies (replace with your command if needed)
+                    sh 'npm install'
+
+                    // Build your application (replace with your build command)
+                    sh 'npm run build'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    // Run your tests (replace with your test runner command)
+                    sh 'npm test'
+                }
+            }
+        }
+    }
+}
